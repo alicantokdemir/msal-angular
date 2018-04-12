@@ -1,15 +1,13 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MsalService } from './msal.service';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/mergeMap';
-@Injectable()
-export class MsalInterceptor implements HttpInterceptor {
-
-    constructor(private msalService: MsalService) { }
-
-    public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+export class MsalInterceptor {
+    constructor(msalService) {
+        this.msalService = msalService;
+    }
+    intercept(req, next) {
         return Observable.fromPromise(this.msalService.getToken().then(token => {
             const JWT = `Bearer ${token}`;
             return req.clone({
@@ -20,3 +18,11 @@ export class MsalInterceptor implements HttpInterceptor {
         })).mergeMap(r => next.handle(r));
     }
 }
+MsalInterceptor.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+MsalInterceptor.ctorParameters = () => [
+    { type: MsalService, },
+];
+//# sourceMappingURL=msal.interceptor.js.map

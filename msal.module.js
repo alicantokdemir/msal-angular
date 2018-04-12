@@ -1,15 +1,10 @@
-import { MsalConfig } from "./msal-config";
-import { ModuleWithProviders, NgModule } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { MsalService, MSAL_CONFIG } from "./msal.service";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { MsalInterceptor} from './msal.interceptor'
+import { MsalInterceptor } from './msal.interceptor';
 import { MsalGuard } from "./msal.guard";
-
-@NgModule({
-    providers: [MsalGuard]
-})
 export class MsalModule {
-    static forRoot(config: MsalConfig): ModuleWithProviders {
+    static forRoot(config) {
         return {
             ngModule: MsalModule,
             providers: [
@@ -20,4 +15,11 @@ export class MsalModule {
         };
     }
 }
-
+MsalModule.decorators = [
+    { type: NgModule, args: [{
+                providers: [MsalGuard]
+            },] },
+];
+/** @nocollapse */
+MsalModule.ctorParameters = () => [];
+//# sourceMappingURL=msal.module.js.map
