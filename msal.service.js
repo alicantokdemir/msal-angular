@@ -9,7 +9,8 @@ export class MsalService {
             `https://login.microsoftonline.com/tfp/${config.tenant}/${config.signUpSignInPolicy}` : '';
         this.app = new Msal.UserAgentApplication(config.clientID, authority, config.callback, {
             navigateToLoginRequestUrl: this.config.navigateToLoginRequestUrl,
-            redirectUri: this.config.redirectUrl || window.location.href
+            redirectUri: this.config.redirectUrl || window.location.href,
+            cacheLocation: this.config.cacheLocation || 'localStorage'
         });
     }
     getUser() {

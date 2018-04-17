@@ -8,4 +8,5 @@ export declare class MsalConfig {
     navigateToLoginRequestUrl?: boolean;
     redirectUrl?: string;
     callback?: tokenReceivedCallback;
+    cacheLocation?: string;
 }
