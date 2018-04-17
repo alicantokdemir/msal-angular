@@ -18,7 +18,8 @@ export class MsalService {
     this.app = new Msal.UserAgentApplication(config.clientID, authority, config.callback,
       {
         navigateToLoginRequestUrl: this.config.navigateToLoginRequestUrl,
-        redirectUri: this.config.redirectUrl || window.location.href
+        redirectUri: this.config.redirectUrl || window.location.href,
+        cacheLocation: this.config.cacheLocation || 'localStorage'
       });
   }
 
