@@ -10,7 +10,7 @@ export declare class MsalService {
     getUser(): Promise<{}>;
     readonly authenticated: Promise<boolean>;
     readonly token: Promise<string>;
-    login(): Promise<string | void>;
+    login(): void | Promise<string | void>;
     getToken(): Promise<string>;
     logout(): void;
     loginPopup(): Promise<string | void>;

@@ -32,12 +32,13 @@ export class MsalService {
             .then(token => {
             return token;
         }).catch(error => {
-            return this.app.acquireTokenPopup(this.config.graphScopes)
-                .then(token => {
-                return Promise.resolve(token);
-            }).catch(innererror => {
-                return Promise.resolve('');
-            });
+            // return this.app.acquireTokenPopup(this.config.graphScopes)
+            //   .then(token => {
+            //     return Promise.resolve(token);
+            //   }).catch(innererror => {
+            //     return Promise.resolve('');
+            //   });
+            return Promise.resolve('');
         });
     }
     logout() {
@@ -63,9 +64,6 @@ export class MsalService {
     }
     loginRedirect() {
         this.app.loginRedirect(this.config.graphScopes);
-        return this.getToken().then(() => {
-            Promise.resolve(this.app.getUser());
-        });
     }
     getFullUrl(url) {
         // this create a absolute url from a relative one.
