@@ -52,7 +52,7 @@ export class MsalService {
         //   }).catch(innererror => {
         //     return Promise.resolve('');
         //   });
-        return Promise.reject(error);
+        return Promise.resolve('');
       });
   }
 
