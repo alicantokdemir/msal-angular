@@ -1,6 +1,5 @@
 import { Injectable, InjectionToken, Inject } from '@angular/core';
 import { MsalConfig } from './msal-config';
-import * as Msal from 'msal';
 
 export const MSAL_CONFIG = new InjectionToken<string>('MSAL_CONFIG');
 
