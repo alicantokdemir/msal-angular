@@ -1,5 +1,8 @@
 import { Injectable, InjectionToken, Inject } from '@angular/core';
 import { MsalConfig } from './msal-config';
+declare const Msal: any;
+
+declare const Promise: any;
 
 export const MSAL_CONFIG = new InjectionToken<string>('MSAL_CONFIG');
 
@@ -9,7 +12,7 @@ export class MsalService {
   public error: string;
   public user: any;
 
-  private app: Msal.UserAgentApplication;
+  private app: any;
 
   constructor(@Inject(MSAL_CONFIG) private config: MsalConfig) {
     const authority = (config.tenant && config.signUpSignInPolicy) ?
@@ -42,9 +45,9 @@ export class MsalService {
 
   public getToken(): Promise<string> {
     return this.app.acquireTokenSilent(this.config.graphScopes)
-      .then(token => {
+      .then((token: any) => {
         return token;
-      }).catch(error => {
+      }).catch((error: any) => {
         // return this.app.acquireTokenPopup(this.config.graphScopes)
         //   .then(token => {
         //     return Promise.resolve(token);
@@ -61,7 +64,7 @@ export class MsalService {
   }
 
   public loginPopup() {
-    return this.app.loginPopup(this.config.graphScopes).then((idToken) => {
+    return this.app.loginPopup(this.config.graphScopes).then((idToken: any) => {
       this.app.acquireTokenSilent(this.config.graphScopes).then(
         (token: string) => {
           return Promise.resolve(token);
