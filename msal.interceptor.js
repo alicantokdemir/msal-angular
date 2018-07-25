@@ -3,26 +3,28 @@ import { Observable } from 'rxjs/Observable';
 import { MsalService } from './msal.service';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/mergeMap';
-export class MsalInterceptor {
-    constructor(msalService) {
+var MsalInterceptor = /** @class */ (function () {
+    function MsalInterceptor(msalService) {
         this.msalService = msalService;
     }
-    intercept(req, next) {
-        return Observable.fromPromise(this.msalService.getToken().then(token => {
-            const JWT = `Bearer ${token}`;
+    MsalInterceptor.prototype.intercept = function (req, next) {
+        return Observable.fromPromise(this.msalService.getToken().then(function (token) {
+            var JWT = "Bearer " + token;
             return req.clone({
                 setHeaders: {
                     Authorization: JWT,
                 },
             });
-        })).mergeMap(r => next.handle(r));
-    }
-}
-MsalInterceptor.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-MsalInterceptor.ctorParameters = () => [
-    { type: MsalService, },
-];
+        })).mergeMap(function (r) { return next.handle(r); });
+    };
+    MsalInterceptor.decorators = [
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    MsalInterceptor.ctorParameters = function () { return [
+        { type: MsalService, },
+    ]; };
+    return MsalInterceptor;
+}());
+export { MsalInterceptor };
 //# sourceMappingURL=msal.interceptor.js.map

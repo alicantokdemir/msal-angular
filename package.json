@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/benbaran/msal-angular#readme",
   "dependencies": {
+    "core-js": "^2.5.7",
     "msal": "^0.1.6"
   },
   "peerDependencies": {

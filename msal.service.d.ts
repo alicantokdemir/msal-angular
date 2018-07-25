@@ -7,13 +7,13 @@ export declare class MsalService {
     user: any;
     private app;
     constructor(config: MsalConfig);
-    getUser(): Promise<{}>;
+    getUser(): Promise<any>;
     readonly authenticated: Promise<boolean>;
     readonly token: Promise<string>;
-    login(): void | Promise<string | void>;
+    login(): any;
     getToken(): Promise<string>;
     logout(): void;
-    loginPopup(): Promise<string | void>;
+    loginPopup(): any;
     private loginRedirect();
     private getFullUrl(url);
     private origin();
